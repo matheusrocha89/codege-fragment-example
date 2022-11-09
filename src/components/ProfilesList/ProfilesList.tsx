@@ -1,7 +1,7 @@
 import React from "react";
 
-import { useGetPeopleQuery } from "../../graphql.types";
-import { Profile } from "../Profile";
+import { useGetPeopleQuery } from "@/graphql.types";
+import { Profile } from "@/components/Profile";
 
 const ProfilesList = () => {
   const { data, loading, error } = useGetPeopleQuery();
