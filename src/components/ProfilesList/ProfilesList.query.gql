@@ -1,0 +1,9 @@
+query GetPeople {
+  allPeople {
+    edges {
+      node {
+        ...Profile_Person
+      }
+    }
+  }
+}

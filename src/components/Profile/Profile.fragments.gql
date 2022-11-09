@@ -1,0 +1,5 @@
+fragment Profile_Person on Person {
+  id
+  name
+  gender
+}
