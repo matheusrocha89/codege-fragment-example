@@ -6,13 +6,6 @@ const config: CodegenConfig = {
   documents: "src/**/*.gql",
   overwrite: true,
   generates: {
-    "src/graphql.types.ts": {
-      plugins: [
-        "typescript",
-        "typescript-operations",
-        "typescript-react-apollo",
-      ],
-    },
     "src/gql/": {
       preset: "client",
       plugins: [],

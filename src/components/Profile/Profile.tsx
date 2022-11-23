@@ -1,24 +1,23 @@
 import React from "react";
 import type { FragmentType } from "../../gql";
-import type { Profile_PersonFragment } from "../../graphql.types";
 import { useFragment } from "../../gql";
-import { Profile_PersonFragmentDoc } from "../../graphql.types";
+import { Profile_PersonFragmentDoc } from "../../gql/graphql";
+import { ProfileName } from "../ProfileName";
 
 type ProfileProps = {
-  profile: FragmentType<typeof Profile_PersonFragmentDoc>;
+  profile?: FragmentType<typeof Profile_PersonFragmentDoc> | null;
 };
 
 const Profile = (props: ProfileProps) => {
-  const { id, name, gender } = useFragment<Profile_PersonFragment>(
-    Profile_PersonFragmentDoc,
-    props.profile
-  );
+  const profile = useFragment(Profile_PersonFragmentDoc, props.profile);
+
+  if (!profile) return null;
 
   return (
     <ul>
-      <li>Id: {id}</li>
-      <li>Name: {name}</li>
-      <li>Gender: {gender}</li>
+      <li>Id: {profile.id}</li>
+      <ProfileName profile={profile} />
+      <li>Gender: {profile.gender}</li>
     </ul>
   );
 };

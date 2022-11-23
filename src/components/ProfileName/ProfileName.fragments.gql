@@ -1,0 +1,3 @@
+fragment ProfileName_Person on Person {
+  name
+}

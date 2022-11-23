@@ -1302,7 +1302,12 @@ export type VehiclesEdge = {
   node?: Maybe<Vehicle>;
 };
 
-export type Profile_PersonFragment = { __typename?: 'Person', id: string, name?: string | null, gender?: string | null } & { ' $fragmentName'?: 'Profile_PersonFragment' };
+export type Profile_PersonFragment = (
+  { __typename?: 'Person', id: string, gender?: string | null }
+  & { ' $fragmentRefs'?: { 'ProfileName_PersonFragment': ProfileName_PersonFragment } }
+) & { ' $fragmentName'?: 'Profile_PersonFragment' };
+
+export type ProfileName_PersonFragment = { __typename?: 'Person', name?: string | null } & { ' $fragmentName'?: 'ProfileName_PersonFragment' };
 
 export type GetPeopleQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -1312,5 +1317,6 @@ export type GetPeopleQuery = { __typename?: 'Root', allPeople?: { __typename?: '
         & { ' $fragmentRefs'?: { 'Profile_PersonFragment': Profile_PersonFragment } }
       ) | null } | null> | null } | null };
 
-export const Profile_PersonFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Profile_Person"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}}]}}]} as unknown as DocumentNode<Profile_PersonFragment, unknown>;
+export const ProfileName_PersonFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ProfileName_Person"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]} as unknown as DocumentNode<ProfileName_PersonFragment, unknown>;
+export const Profile_PersonFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Profile_Person"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Person"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"gender"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ProfileName_Person"}}]}},...ProfileName_PersonFragmentDoc.definitions]} as unknown as DocumentNode<Profile_PersonFragment, unknown>;
 export const GetPeopleDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetPeople"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"allPeople"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Profile_Person"}}]}}]}}]}}]}},...Profile_PersonFragmentDoc.definitions]} as unknown as DocumentNode<GetPeopleQuery, GetPeopleQueryVariables>;
